@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type ButtonHTMLAttributes } from "react";
 import { Code2, Menu, X, Mail, Phone, MapPin, LogOut, Briefcase } from "lucide-react";
 import { useUser } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -132,7 +132,7 @@ export function PageHeader({ title, subtitle, children }: { title: string; subti
   );
 }
 
-export function Btn({ className, variant = "primary", ...p }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "outline" }) {
+export function Btn({ className, variant = "primary", ...p }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "outline" }) {
   return (
     <button {...p} className={cn(
       "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition disabled:opacity-50",
