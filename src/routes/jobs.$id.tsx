@@ -61,9 +61,9 @@ function JobDetail() {
     const r = schema.safeParse(form);
     const errs: Record<string, string> = {};
     if (!r.success) r.error.issues.forEach((i) => { errs[String(i.path[0])] ??= i.message; });
-    if (!file) errs.resume = "Please upload your resume";
+    if (!file) errs["resume"] = "Please upload your resume";
     setErrors(errs);
-    if (Object.keys(errs).length || !r.success) return toast.error("Please fix the highlighted fields");
+    if (Object.keys(errs).length || !r.success) { toast.error("Please fix the highlighted fields"); return; }
     add({ jobId: job.id, jobTitle: job.title, company: job.company, ...r.data, resumeName: file!.name });
     toast.success("Application submitted!", { description: `${job.title} at ${job.company}` });
     navigate({ to: "/applications" });
