@@ -50,8 +50,8 @@ function JobDetail() {
   const onFile = (f?: File) => {
     if (!f) return;
     const ok = /\.(pdf|docx?)$/i.test(f.name);
-    if (!ok) return setErrors((e) => ({ ...e, resume: "Upload a PDF or Word document" }));
-    if (f.size > 5 * 1024 * 1024) return setErrors((e) => ({ ...e, resume: "File must be smaller than 5 MB" }));
+    if (!ok) { setErrors((e) => ({ ...e, resume: "Upload a PDF or Word document" })); return; }
+    if (f.size > 5 * 1024 * 1024) { setErrors((e) => ({ ...e, resume: "File must be smaller than 5 MB" })); return; }
     setErrors((e) => { const { resume: _r, ...rest } = e; return rest; });
     setFile(f);
   };
@@ -121,16 +121,16 @@ function JobDetail() {
                 <label className="mb-1 block text-sm font-medium">Resume</label>
                 <button type="button" onClick={() => fileRef.current?.click()}
                   onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); onFile(e.dataTransfer.files[0]); }}
-                  className={`flex w-full flex-col items-center gap-1 rounded-xl border-2 border-dashed p-5 text-sm transition hover:border-violet hover:bg-accent ${errors.resume ? "border-destructive" : ""}`}>
+                  className={`flex w-full flex-col items-center gap-1 rounded-xl border-2 border-dashed p-5 text-sm transition hover:border-violet hover:bg-accent ${errors["resume"] ? "border-destructive" : ""}`}>
                   {file ? <><FileCheck2 className="size-6 text-success" /><span className="font-medium">{file.name}</span><span className="text-xs text-muted-foreground">Click to replace</span></>
                     : <><Upload className="size-6 text-violet" /><span className="font-medium">Click or drag to upload</span><span className="text-xs text-muted-foreground">PDF or Word, max 5 MB</span></>}
                 </button>
                 <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
-                <FieldError msg={errors.resume} />
+                <FieldError msg={errors["resume"]} />
               </div>
               <div><label className="mb-1 block text-sm font-medium">Cover note <span className="text-muted-foreground">(optional)</span></label>
-                <textarea rows={3} value={form.coverNote} onChange={(e) => setForm({ ...form, coverNote: e.target.value })} className="field" aria-invalid={!!errors.coverNote} />
-                <FieldError msg={errors.coverNote} /></div>
+                <textarea rows={3} value={form.coverNote} onChange={(e) => setForm({ ...form, coverNote: e.target.value })} className="field" aria-invalid={!!errors["coverNote"]} />
+                <FieldError msg={errors["coverNote"]} /></div>
               <Btn type="submit" className="w-full">Submit application</Btn>
               <p className="text-center text-xs text-muted-foreground">Saved in this browser for the demo.</p>
             </form>

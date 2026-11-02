@@ -60,7 +60,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
           {field("email", "Email", "email")}
           {field("password", "Password", "password")}
           {isReg && field("confirm", "Confirm password", "password")}
-          {errors.form && <p className="rounded-lg bg-destructive-soft p-3 text-sm text-destructive">{errors.form}</p>}
+          {errors["form"] && <p className="rounded-lg bg-destructive-soft p-3 text-sm text-destructive">{errors["form"]}</p>}
           <Btn type="submit" className="w-full">{isReg ? "Create account" : "Log in"}</Btn>
         </form>
         <p className="mt-6 text-center text-sm text-muted-foreground">

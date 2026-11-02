@@ -74,8 +74,8 @@ function PostJob() {
           {select("mode", "Work mode", ["Remote", "Hybrid", "Onsite"].map((v) => ({ v, l: v })))}
         </div>
         <div><label className="mb-1 block text-sm font-medium">Description</label>
-          <textarea rows={5} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} aria-invalid={!!errors.description} className="field" />
-          <FieldError msg={errors.description} /></div>
+          <textarea rows={5} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} aria-invalid={!!errors["description"]} className="field" />
+          <FieldError msg={errors["description"]} /></div>
         <Btn type="submit" className="w-full sm:w-auto">Publish job</Btn>
       </form>
     </>

@@ -49,8 +49,8 @@ function Contact() {
               <FieldError msg={errors[k]} /></div>
           ))}
           <div><label className="mb-1 block text-sm font-medium">Message</label>
-            <textarea rows={5} value={f.message} onChange={(e) => setF({ ...f, message: e.target.value })} aria-invalid={!!errors.message} className="field" />
-            <FieldError msg={errors.message} /></div>
+            <textarea rows={5} value={f.message} onChange={(e) => setF({ ...f, message: e.target.value })} aria-invalid={!!errors["message"]} className="field" />
+            <FieldError msg={errors["message"]} /></div>
           <Btn type="submit" className="w-full">Send message</Btn>
         </form>
       </div>
